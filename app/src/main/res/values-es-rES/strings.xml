@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Juego De Dados</string>
+    <string name="One_Dice">Un Dado</string>
+    <string name="Two_Dice">Dos Dados</string>
+    <string name="Roll">Rollo</string>
+</resources>

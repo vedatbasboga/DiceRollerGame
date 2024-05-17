@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zar Atma Oyunu</string>
+    <string name="One_Dice">Tek Zar</string>
+    <string name="Two_Dice">İki Zar</string>
+    <string name="Roll">Zar At</string>
+</resources>
