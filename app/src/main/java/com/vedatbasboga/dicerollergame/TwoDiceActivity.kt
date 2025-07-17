@@ -4,19 +4,18 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.animation.Animation
-import android.view.animation.RotateAnimation
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.vedatbasboga.dicerollergame.databinding.ActivityTwoDiceBinding
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 
 class TwoDiceActivity : AppCompatActivity() {
 
     private lateinit var layout: ActivityTwoDiceBinding
-
     private lateinit var mAdView : AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +24,9 @@ class TwoDiceActivity : AppCompatActivity() {
         setContentView(layout.root)
 
         layout.backButton2.setOnClickListener {
-
             val intent = Intent(this@TwoDiceActivity , MainActivity :: class.java)
             startActivity(intent)
-
         }
-
-
-        // Add
-
 
         MobileAds.initialize(this) {}
 
@@ -41,101 +34,70 @@ class TwoDiceActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
 
-        mAdView.adListener = object: AdListener() {
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-
-            override fun onAdFailedToLoad(adError : LoadAdError) {
-                // Code to be executed when an ad request fails.
-            }
-
-            override fun onAdImpression() {
-
-            }
-
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-            }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-        }
-
         val mediaPlayer = MediaPlayer.create(this , R.raw.dice_sound)
-
-        val diceImage1Id = R.drawable.dice1
-        val diceImage2Id = R.drawable.dice1
-
+        val diceImages = arrayOf(
+            R.drawable.dice1,
+            R.drawable.dice2,
+            R.drawable.dice3,
+            R.drawable.dice4,
+            R.drawable.dice5,
+            R.drawable.dice6
+        )
         layout.button.setOnClickListener {
+            val scaleX = ObjectAnimator.ofFloat(layout.button, "scaleX", 1f, 1.2f, 1f)
+            val scaleY = ObjectAnimator.ofFloat(layout.button, "scaleY", 1f, 1.2f, 1f)
+            val bounceSet = android.animation.AnimatorSet()
+            bounceSet.playTogether(scaleX, scaleY)
+            bounceSet.duration = 250
+            bounceSet.start()
 
-            startZarAnimation(diceImage1Id)
-            startZarAnimation(diceImage2Id)
-
-            rollDice()
-
-            mediaPlayer.start()
-
+            startDiceSlotAnimation(diceImages) {
+                mediaPlayer.start()
+            }
         }
 
 
     }
-
-
-    private fun startZarAnimation (ImageId : Int) {
-
-        val rotateAnimation = RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-        rotateAnimation.duration = 1000 // Animation time type second*1000
-        layout.imageView2.setImageResource(ImageId)
-        layout.imageView2.startAnimation(rotateAnimation)
-        layout.imageView3.setImageResource(ImageId)
-        layout.imageView3.startAnimation(rotateAnimation)
-
-    }
-
-
     private class Dice(val num: Int) {
-
         fun roll(): Int {
-
             return (1..num).random()
-
         }
     }
-
-    private fun rollDice() {
-
-        val dice = Dice(6)
-        val dice2 = Dice(6)
-        val cubeRoller = dice.roll()
-        val cubeRoller2 = dice2.roll()
-
-        when(cubeRoller) {
-
-            1 -> layout.imageView2.setImageResource(R.drawable.dice1)
-            2 -> layout.imageView2.setImageResource(R.drawable.dice2)
-            3 -> layout.imageView2.setImageResource(R.drawable.dice3)
-            4 -> layout.imageView2.setImageResource(R.drawable.dice4)
-            5 -> layout.imageView2.setImageResource(R.drawable.dice5)
-            6 -> layout.imageView2.setImageResource(R.drawable.dice6)
+    private fun startDiceSlotAnimation(diceImages: Array<Int>, onResult: () -> Unit) {
+        val shake2 = ObjectAnimator.ofFloat(layout.imageView2, "translationX", 0f, 25f, -25f, 15f, -15f, 6f, -6f, 0f)
+        shake2.duration = 400
+        val rotate2 = ObjectAnimator.ofFloat(layout.imageView2, "rotation", 0f, 360f)
+        rotate2.duration = 600
+        val shake3 = ObjectAnimator.ofFloat(layout.imageView3, "translationX", 0f, -25f, 25f, -15f, 15f, -6f, 6f, 0f)
+        shake3.duration = 400
+        val rotate3 = ObjectAnimator.ofFloat(layout.imageView3, "rotation", 0f, 360f)
+        rotate3.duration = 600
+        val slotDuration = 700L
+        val slotAnimator2 = ValueAnimator.ofInt(0, diceImages.size * 4)
+        slotAnimator2.duration = slotDuration
+        slotAnimator2.addUpdateListener { anim ->
+            val idx = (anim.animatedValue as Int) % diceImages.size
+            layout.imageView2.setImageResource(diceImages[idx])
         }
-
-        when(cubeRoller2) {
-
-            1 -> layout.imageView3.setImageResource(R.drawable.dice1)
-            2 -> layout.imageView3.setImageResource(R.drawable.dice2)
-            3 -> layout.imageView3.setImageResource(R.drawable.dice3)
-            4 -> layout.imageView3.setImageResource(R.drawable.dice4)
-            5 -> layout.imageView3.setImageResource(R.drawable.dice5)
-            6 -> layout.imageView3.setImageResource(R.drawable.dice6)
+        val slotAnimator3 = ValueAnimator.ofInt(0, diceImages.size * 4)
+        slotAnimator3.duration = slotDuration
+        slotAnimator3.addUpdateListener { anim ->
+            val idx = (anim.animatedValue as Int) % diceImages.size
+            layout.imageView3.setImageResource(diceImages[idx])
         }
-
+        val animSet = android.animation.AnimatorSet()
+        animSet.playTogether(shake2, rotate2, slotAnimator2, shake3, rotate3, slotAnimator3)
+        animSet.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                val dice = Dice(6)
+                val dice2 = Dice(6)
+                val result1 = dice.roll()
+                val result2 = dice2.roll()
+                layout.imageView2.setImageResource(diceImages[result1 - 1])
+                layout.imageView3.setImageResource(diceImages[result2 - 1])
+                onResult()
+            }
+        })
+        animSet.start()
     }
 }
