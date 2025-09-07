@@ -8,6 +8,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
+import com.vedatbasboga.dicerollergame.compose.ComposeActivity
 import com.vedatbasboga.dicerollergame.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +38,13 @@ class MainActivity : AppCompatActivity() {
         layout.twoDice.setOnClickListener {
 
             val intent = Intent(this@MainActivity , TwoDiceActivity :: class.java)
+            startActivity(intent)
+
+        }
+
+        layout.buttonComposeActivity.setOnClickListener {
+
+            val intent = Intent(this@MainActivity , ComposeActivity :: class.java)
             startActivity(intent)
 
         }
