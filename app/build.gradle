@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
@@ -11,16 +12,13 @@ android {
         viewBinding true
         compose true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
 
     defaultConfig {
         applicationId "com.vedatbasboga.dicerollergame"
         minSdk 28
         targetSdk 36
-        versionCode 5
-        versionName "1.0.1.1"
+        versionCode 6
+        versionName "1.0.1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
