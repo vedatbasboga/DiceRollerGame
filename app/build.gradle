@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.vedatbasboga.dicerollergame'
-    compileSdk 35
+    compileSdk 36
 
     buildFeatures {
         viewBinding true
@@ -18,7 +18,7 @@ android {
     defaultConfig {
         applicationId "com.vedatbasboga.dicerollergame"
         minSdk 28
-        targetSdk 35
+        targetSdk 36
         versionCode 5
         versionName "1.0.1.1"
 
