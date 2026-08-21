@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-Simple Dice Roll Game
-You can roll one dice or two dice 
-=======
 # Dice Roller Game
 
 A simple and fun dice rolling app built with **Jetpack Compose** and **Material Design 3**. Roll one or two dice with smooth animations, sound effects, and haptic feedback.
@@ -64,4 +60,3 @@ com.vedatbasboga.dicerollergame/
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
->>>>>>> 494331b (Add haptic feedback, README, LICENSE, and .gitignore for public release)
