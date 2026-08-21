@@ -44,17 +44,18 @@ Play Store'da yayinlanmis bir zar atma oyunu. Hedef: Tamamen Jetpack Compose'a g
 ### 2.1 MVVM Mimarisi ✅
 - [x] DiceViewModel + StateFlow ile UI state yonetimi
 - [x] DiceUiState data class
+- [x] Paylasilan ViewModel (NavGraph seviyesinde)
 
 ### 2.2 Paket Yapisi ✅
 ```
 com.vedatbasboga.dicerollergame/
+├── model/            ✅ (Dice, RollRecord)
+├── viewmodel/        ✅ (DiceViewModel)
 ├── ui/
 │   ├── theme/        ✅ (Color, Type, Theme)
-│   ├── screen/       ✅ (HomeScreen, OneDiceScreen, TwoDiceScreen)
+│   ├── screen/       ✅ (Home, OneDice, TwoDice, History)
 │   ├── component/    ✅ (AnimatedDiceImage, RollButton)
 │   └── navigation/   ✅ (NavGraph, Routes)
-├── viewmodel/        ✅ (DiceViewModel)
-├── model/            ✅ (Dice data class)
 └── MainActivity.kt   ✅
 ```
 
@@ -100,13 +101,26 @@ com.vedatbasboga.dicerollergame/
 
 ---
 
-## FAZE 5: Ekstra Ozellikler (Opsiyonel)
+## FAZE 5: Ekstra Ozellikler ✅ TAMAMLANDI
 
-- [ ] Zar atma gecmisi (son 10 atis)
-- [ ] Istatistikler ekrani
-- [ ] Farkli zar tipleri (D4, D8, D10, D12, D20)
-- [ ] Unit testler (ViewModel testleri)
-- [ ] UI testler (Compose testing)
+### 5.1 Zar Atma Gecmisi ✅
+- [x] RollRecord data class (sonuclar, toplam, zaman damgasi)
+- [x] HistoryScreen - son 20 atis listesi (LazyColumn)
+- [x] Zar gorselleri ile gecmis karti
+- [x] Gecmis temizleme butonu
+- [x] HomeScreen'de gecmis sayaci
+
+### 5.2 Paylasilan State ✅
+- [x] ViewModel NavGraph seviyesinde paylasiliyor
+- [x] Tek/cift zar atislari ayni gecmise kaydediliyor
+- [x] Toplam atis sayaci
+
+### 5.3 Lokalizasyon Guncellendi ✅
+- [x] Yeni string'ler EN, TR, ES dillerinde eklendi
+
+### 5.4 Unit Testler ✅
+- [x] DiceTest - zar siniri, varsayilan deger, RollRecord toplam
+- [x] DiceViewModelTest - baslangic state, roll, animasyon, gecmis, temizleme, MAX_HISTORY limiti
 
 ---
 
@@ -118,4 +132,4 @@ com.vedatbasboga.dicerollergame/
 | 2 | Faz 2 - Mimari (MVVM) | ✅ Tamamlandi |
 | 3 | Faz 3 - UI/UX | ✅ Tamamlandi |
 | 4 | Faz 4 - GitHub Hazirlik | ✅ Tamamlandi |
-| 5 | Faz 5 - Ekstra | Opsiyonel |
+| 5 | Faz 5 - Ekstra Ozellikler | ✅ Tamamlandi |

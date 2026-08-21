@@ -3,5 +3,11 @@
     <string name="app_name">Juego De Dados</string>
     <string name="One_Dice">Un Dado</string>
     <string name="Two_Dice">Dos Dados</string>
-    <string name="Roll">Rollo</string>
+    <string name="Roll">Lanzar</string>
+    <string name="History">Historial</string>
+    <string name="total_rolls">Tiradas Totales: %d</string>
+    <string name="no_history">Aún no hay tiradas. ¡Empieza a lanzar!</string>
+    <string name="clear_history">Borrar</string>
+    <string name="roll_number">#%d</string>
+    <string name="total_label">Total: %d</string>
 </resources>

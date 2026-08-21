@@ -27,7 +27,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vedatbasboga.dicerollergame.R
 import com.vedatbasboga.dicerollergame.ui.component.AnimatedDiceImage
 import com.vedatbasboga.dicerollergame.ui.component.RollButton
@@ -37,7 +36,7 @@ import com.vedatbasboga.dicerollergame.viewmodel.DiceViewModel
 @Composable
 fun OneDiceScreen(
     onNavigateBack: () -> Unit,
-    viewModel: DiceViewModel = viewModel()
+    viewModel: DiceViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current

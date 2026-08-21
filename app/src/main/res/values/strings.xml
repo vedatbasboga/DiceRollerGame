@@ -3,5 +3,10 @@
     <string name="One_Dice">One Dice</string>
     <string name="Two_Dice">Two Dice</string>
     <string name="Roll">Roll</string>
-
+    <string name="History">History</string>
+    <string name="total_rolls">Total Rolls: %d</string>
+    <string name="no_history">No rolls yet. Start rolling!</string>
+    <string name="clear_history">Clear</string>
+    <string name="roll_number">#%d</string>
+    <string name="total_label">Total: %d</string>
 </resources>

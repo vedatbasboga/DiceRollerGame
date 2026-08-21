@@ -4,4 +4,10 @@
     <string name="One_Dice">Tek Zar</string>
     <string name="Two_Dice">İki Zar</string>
     <string name="Roll">Zar At</string>
+    <string name="History">Geçmiş</string>
+    <string name="total_rolls">Toplam Atış: %d</string>
+    <string name="no_history">Henüz atış yok. Zar atmaya başla!</string>
+    <string name="clear_history">Temizle</string>
+    <string name="roll_number">#%d</string>
+    <string name="total_label">Toplam: %d</string>
 </resources>

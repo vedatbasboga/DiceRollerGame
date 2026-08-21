@@ -37,7 +37,9 @@ import kotlinx.coroutines.delay
 @Composable
 fun HomeScreen(
     onNavigateToOneDice: () -> Unit,
-    onNavigateToTwoDice: () -> Unit
+    onNavigateToTwoDice: () -> Unit,
+    onNavigateToHistory: () -> Unit,
+    historyCount: Int = 0
 ) {
     var visible by remember { mutableStateOf(false) }
 
@@ -92,6 +94,20 @@ fun HomeScreen(
                         description = "\uD83C\uDFB2 \uD83C\uDFB2",
                         onClick = onNavigateToTwoDice
                     )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    MenuCard(
+                        title = stringResource(R.string.History),
+                        description = if (historyCount > 0) {
+                            "$historyCount \uD83C\uDFAF"
+                        } else {
+                            "\uD83D\uDCCB"
+                        },
+                        onClick = onNavigateToHistory,
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                    )
                 }
             }
         }
@@ -102,7 +118,9 @@ fun HomeScreen(
 private fun MenuCard(
     title: String,
     description: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    containerColor: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.primaryContainer,
+    contentColor: androidx.compose.ui.graphics.Color = MaterialTheme.colorScheme.onPrimaryContainer
 ) {
     Card(
         onClick = onClick,
@@ -110,7 +128,7 @@ private fun MenuCard(
             .fillMaxWidth()
             .height(80.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
+            containerColor = containerColor
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
@@ -124,7 +142,7 @@ private fun MenuCard(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
+                color = contentColor
             )
             Text(
                 text = description,
