@@ -10,6 +10,7 @@ A simple and fun dice rolling app built with **Jetpack Compose** and **Material 
 
 - **Single Dice** - Roll one die with animated shake, rotate, and bounce effects
 - **Two Dice** - Roll two dice simultaneously with synchronized animations
+- **Roll History** - Track your last 20 rolls with dice visuals and totals
 - **Sound Effects** - Satisfying dice roll sound on every throw
 - **Haptic Feedback** - Vibration on button press for tactile response
 - **Dark Mode** - Automatic light/dark theme based on system settings
@@ -23,6 +24,7 @@ A simple and fun dice rolling app built with **Jetpack Compose** and **Material 
 - **Architecture:** MVVM (ViewModel + StateFlow)
 - **Navigation:** Jetpack Navigation Compose (Single Activity)
 - **Animation:** Compose Animation API (Animatable, spring, tween)
+- **Testing:** JUnit 4 (ViewModel & Model unit tests)
 - **Min SDK:** 28 (Android 9)
 - **Target SDK:** 37
 
@@ -30,21 +32,28 @@ A simple and fun dice rolling app built with **Jetpack Compose** and **Material 
 
 ```
 com.vedatbasboga.dicerollergame/
-├── model/            # Data models (Dice)
+├── model/            # Data models (Dice, RollRecord)
 ├── viewmodel/        # ViewModels with UI state
 ├── ui/
 │   ├── theme/        # Material3 theme (colors, typography)
-│   ├── screen/       # Screens (Home, OneDice, TwoDice)
+│   ├── screen/       # Screens (Home, OneDice, TwoDice, History)
 │   ├── component/    # Reusable composables (AnimatedDiceImage, RollButton)
 │   └── navigation/   # NavGraph and route definitions
 └── MainActivity.kt   # Single Activity entry point
 ```
 
-## Build & Run
+## Setup
 
 1. Clone the repository
 2. Open in Android Studio (Quail 3 or later)
-3. Sync Gradle and run on a device/emulator
+3. Add your Ad IDs to `local.properties`:
+   ```properties
+   AD_APP_ID=your-ad-app-id
+   AD_BANNER_HOME=your-banner-id
+   AD_BANNER_ONE_DICE=your-banner-id
+   AD_BANNER_TWO_DICE=your-banner-id
+   ```
+4. Sync Gradle and run on a device/emulator
 
 ## Download
 
