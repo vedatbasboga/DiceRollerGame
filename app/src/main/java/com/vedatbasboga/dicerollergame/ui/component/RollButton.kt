@@ -1,5 +1,6 @@
 package com.vedatbasboga.dicerollergame.ui.component
 
+import android.view.HapticFeedbackConstants
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -16,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vedatbasboga.dicerollergame.R
@@ -26,6 +28,7 @@ fun RollButton(
     enabled: Boolean = true,
     modifier: Modifier = Modifier
 ) {
+    val view = LocalView.current
     var isPressed by remember { mutableStateOf(false) }
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 1.15f else 1f,
@@ -40,6 +43,7 @@ fun RollButton(
     Button(
         onClick = {
             isPressed = true
+            view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             onClick()
         },
         enabled = enabled,
