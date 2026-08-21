@@ -12,26 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiceRollerGame"
         tools:targetApi="31">
-        <activity
-            android:name=".compose.ComposeActivity"
-            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7900243709498260~9847863021" />
 
         <activity
-            android:name=".TwoDiceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OneDiceActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.DiceRollerGame">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
